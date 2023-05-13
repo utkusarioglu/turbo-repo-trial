@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  turbo-repo:
+    environment:
+      GH_TOKEN: ${GH_TOKEN}
+    volumes:
+      - type: volume
+        source: vscode-extensions
+        target: /home/rn/.vscode-server/extensions
+      - type: volume
+        source: vscode-extensions-insiders
+        target: /home/rn/.vscode-server-insiders/extensions
+    command: /bin/sh -c "while sleep 1000; do :; done"
+
+volumes:
+  vscode-extensions:
+    name: turbo-repo-vscode-extensions
+  vscode-extensions-insiders:
+    name: turbo-repo-vscode-extensions-insiders
