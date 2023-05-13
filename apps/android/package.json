@@ -1,12 +1,14 @@
 {
-  "name": "NextjsGrpc",
+  "name": "android",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "adb-connect": "adb connect $ANDROID_TARGET_DEVICE",
+    "rn-start": "react-native start",
+    "rn-android": "react-native run-android",
+    "dev": "yarn adb-connect && yarn rn-start & yarn rn-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
-    "start": "react-native start",
     "test": "jest"
   },
   "dependencies": {
