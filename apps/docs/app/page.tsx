@@ -1,10 +1,11 @@
-import { Button, Header } from "ui";
+// import { Button, Header } from "__ui";
 
 export default function Page() {
   return (
     <>
-      <Header text="Docs" />
-      <Button />
+      <p>Hello docs</p>
+      {/* <Header text="Docs" />
+      <Button /> */}
     </>
   );
 }
