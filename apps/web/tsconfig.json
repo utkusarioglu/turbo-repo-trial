@@ -3,11 +3,15 @@
   "compilerOptions": {
     "plugins": [{ "name": "next" }],
     "baseUrl": ".",
-    "paths": {
-      "__ui/*": ["../../packages/ui/src/*"],
-      "__app/*": ["../../packages/app/src/*"]
-    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next.config.js"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "references": [
+    {
+      "path": "../../packages/app"
+    },
+    {
+      "path": "../../packages/ui"
+    },
+  ]
 }

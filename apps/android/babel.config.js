@@ -2,29 +2,49 @@
 //   presets: ['module:metro-react-native-babel-preset'],
 // };
 
-process.env.TAMAGUI_TARGET = 'native';
+const path = require("path");
 
-console.log('babel!!!------------------------', {dir: __dirname});
+process.env.TAMAGUI_TARGET = "native";
+
+const appRoot = __dirname;
+
+const alias = {
+  "^react$": require.resolve("react", {
+    paths: [path.join(appRoot, "./")],
+  }),
+  "^react-native$": require.resolve(`react-native`, {
+    paths: [path.join(__dirname, "./")],
+  }),
+  "^react-native/(.+)": ([, name]) =>
+    require.resolve(`react-native/${name}`, {
+      paths: [path.join(__dirname, "./")],
+    }),
+  // "react-native-svg": require.resolve("react-native-svg", {
+  //   paths: [path.join(__dirname, "./")],
+  // }),
+};
+
+console.log("babel!!!------------------------!", { appRoot, alias });
 
 module.exports = {
-  presets: ['module:metro-react-native-babel-preset'],
+  presets: ["module:metro-react-native-babel-preset"],
   plugins: [
-    'tsconfig-paths-module-resolver',
+    // "tsconfig-paths-module-resolver",
     [
-      '@tamagui/babel-plugin',
+      "@tamagui/babel-plugin",
       {
-        components: ['tamagui'],
-        config: './tamagui.config.ts',
-        importsWhitelist: ['constants.js', 'colors.js'],
+        components: ["tamagui"],
+        config: "./tamagui.config.ts",
+        importsWhitelist: ["constants.js", "colors.js"],
         logTimings: true,
-        disableExtraction: process.env.NODE_ENV === 'development',
+        disableExtraction: process.env.NODE_ENV === "development",
       },
     ],
     // be sure to set TAMAGUI_TARGET
     [
-      'transform-inline-environment-variables',
+      "transform-inline-environment-variables",
       {
-        include: 'TAMAGUI_TARGET',
+        include: "TAMAGUI_TARGET",
       },
     ],
   ],

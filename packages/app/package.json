@@ -2,5 +2,8 @@
   "name": "app",
   "packageManager": "yarn@3.5.1",
   "main": "./src/index.tsx",
-  "types": "./src/index.tsx"
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "ui": "*"
+  }
 }

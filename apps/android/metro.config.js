@@ -1,46 +1,72 @@
 const path = require("path");
+
 const getWorkspaces = require("get-yarn-workspaces");
-const currDir = __dirname;
-const rootDir = path.resolve(__dirname, "../..");
-const appsDir = path.resolve(rootDir, "apps");
-const packagesDir = path.resolve(rootDir, "packages");
-const packageRepoDirs = getWorkspaces(packagesDir);
-const rootNodeModulesDir = path.resolve(rootDir, "node_modules");
-const blockList = ["react", "react-native"]
-  .map(
-    pkg =>
-      // new RegExp(`${dir}/node_modules/${depName}/.*`)
-      new RegExp(path.resolve("node_modules", pkg) + "/.*"),
-  )
-  .filter(val => val.test(new RegExp("/android/node_modules/.*")));
+const blacklist = require("metro-config/src/defaults/exclusionList");
+// const blacklist = require("metro-config/src/defaults/blacklist");
+const workspaceRoot = path.resolve(__dirname, "../..");
+const packagesRoot = path.resolve(workspaceRoot, "packages");
+const repoRoot = __dirname;
 
-const extraNodeModules = {
-  __app: path.resolve(packagesDir, "app"),
-  __ui: path.resolve(packagesDir, "ui"),
-};
+const allWorkspaces = getWorkspaces(workspaceRoot);
+const packageWorkspaces = allWorkspaces.filter(workspacePath =>
+  workspacePath.includes("packages/"),
+);
 
-console.log({
-  currDir,
-  rootDir,
-  appsDir,
-  packagesDir,
-  packageRepoDirs,
-  rootNodeModulesDir,
-  blockList,
-});
+// const blockList = [
+//   ...allWorkspaces.map(
+//     workspacePath =>
+//       `/${workspacePath.replace(
+//         /\//g,
+//         "[/\\\\]",
+//       )}[/\\\\]node_modules[/\\\\]react-native[/\\\\].*/`,
+//   ),
+//   ...allWorkspaces.map(
+//     workspacePath =>
+//       `/${workspacePath.replace(
+//         /\//g,
+//         "[/\\\\]",
+//       )}[/\\\\]node_modules[/\\\\]react[/\\\\].*/`,
+//   ),
+// ];
+
+const reactNativePath = require.resolve("react-native");
+const reactNativeFolder = `${
+  reactNativePath.split("node_modules/react-native/")[0]
+}node_modules/react-native/`;
+
+const blockList = packageWorkspaces.map(
+  workspacePath => new RegExp(`${workspacePath}/node_modules/react-native`),
+);
+
+console.log({ allWorkspaces, packageWorkspaces, packagesRoot, blockList });
 
 module.exports = {
-  transformer: {
-    getTransformOptions: async () => ({
-      transform: {
-        experimentalImportSupport: false,
-        inlineRequires: true,
-      },
-    }),
-  },
-  watchFolders: [rootNodeModulesDir, ...packageRepoDirs],
+  watchFolders: [
+    path.resolve(repoRoot, "node_modules"),
+    path.resolve(workspaceRoot, "node_modules"),
+    ...packageWorkspaces.map(packagePath => path.resolve(packagePath)),
+  ],
+
   resolver: {
+    // blockList: blacklist(blockList),
     blockList,
-    extraNodeModules,
+    extraNodeModules: {
+      react: path.resolve(workspaceRoot, "node_modules/react"),
+      "react-native": path.resolve(repoRoot, "node_modules/react-native"),
+      // "react-dom": path.resolve(workspaceRoot, "node_modules/react-dom"),
+      // "@babel/runtime": path.resolve(repoRoot, "node_modules/@babel/runtime"),
+      // react: path.resolve(repoRoot, "node_modules/react"),
+      // tamagui: path.resolve(workspaceRoot, "node_modules/tamagui"),
+      // ui: path.resolve(packagesRoot, "ui"),
+      // app: path.resolve(packagesRoot, "app"), ,
+    },
   },
+  // resolver: {
+  //   blacklistRE: new RegExp(
+  //     `^((?!${reactNativeFolder.replace(
+  //       "/",
+  //       "\\/",
+  //     )}).)*\\/node_modules\\/react-native\\/.*$`,
+  //   ),
+  // },
 };

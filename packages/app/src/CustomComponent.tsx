@@ -1,7 +1,7 @@
-import CustomButton from "__ui/CustomButton";
-import CustomHeader from "__ui/CustomHeader";
-import CustomInput from "__ui/CustomInput";
-import { Spacer, YStack, XStack } from "__ui";
+import CustomButton from "ui/src/CustomButton";
+import CustomHeader from "ui/src/CustomHeader";
+import CustomInput from "ui/src/CustomInput";
+import { Spacer, YStack, XStack } from "ui";
 
 const CustomComponent = () => {
   return (
