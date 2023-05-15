@@ -5,7 +5,7 @@ module.exports = function (name, { defaultConfig }) {
   const nextConfig = {
     ...defaultConfig,
     reactStrictMode: true,
-    transpilePackages: ["ui"],
+    transpilePackages: ["ui", "app"],
   };
 
   const tamaguiPlugin = withTamagui({
@@ -16,8 +16,8 @@ module.exports = function (name, { defaultConfig }) {
     // bundle sizes down nearly 30-50Kb.
     useReactNativeWebLite: true,
 
-    // // disable static extraction, faster to iterate in dev mode (default false)
-    // disableExtraction: process.env.NODE_ENV === "development",
+    // disable static extraction, faster to iterate in dev mode (default false)
+    disableExtraction: process.env.NODE_ENV === "development",
   });
 
   return {

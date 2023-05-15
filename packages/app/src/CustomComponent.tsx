@@ -13,6 +13,8 @@ const CustomComponent = () => {
         <CustomButton />
         <Spacer />
         <CustomButton />
+        <Spacer />
+        <CustomButton />
       </XStack>
     </YStack>
   );
