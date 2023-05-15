@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   turbo-repo:
@@ -21,6 +21,8 @@ services:
       - type: volume
         source: android
         target: /opt/android
+    ports:
+      - 3000:3000
 
 volumes:
   ccache:
