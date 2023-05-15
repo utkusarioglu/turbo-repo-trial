@@ -5,7 +5,7 @@ module.exports = function (name, { defaultConfig }) {
   const nextConfig = {
     ...defaultConfig,
     reactStrictMode: true,
-    transpilePackages: ["ui", "app"],
+    transpilePackages: ["ui", "app", "solito"],
   };
 
   const tamaguiPlugin = withTamagui({

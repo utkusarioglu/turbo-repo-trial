@@ -1,7 +1,7 @@
 "use client";
 import { NextThemeProvider, useRootTheme } from "@tamagui/next-theme";
 import UiProvider from "ui/src/Provider";
-import CustomComponent from "app/src/CustomComponent";
+import HomeScreen from "app/src/screens/Home.screen";
 import tamaguiConfig from "../tamagui.config";
 
 export default function Page() {
@@ -15,7 +15,7 @@ export default function Page() {
         disableRootThemeClass
         defaultTheme={theme}
       >
-        <CustomComponent />
+        <HomeScreen />
       </UiProvider>
     </NextThemeProvider>
   );
