@@ -1,5 +1,5 @@
 "use client";
-import "__ui/css-reset";
+import "ui/src/css-reset";
 import { useServerInsertedHTML } from "next/navigation";
 import { type ReactNode } from "react";
 

@@ -1,7 +1,7 @@
 "use client";
 import { NextThemeProvider, useRootTheme } from "@tamagui/next-theme";
-import UiProvider from "__ui/Provider";
-import CustomComponent from "__app/CustomComponent";
+import UiProvider from "ui/src/Provider";
+import CustomComponent from "app/src/CustomComponent";
 import tamaguiConfig from "../tamagui.config";
 
 export default function Page() {

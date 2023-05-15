@@ -1,11 +1,18 @@
-// import { Button, Header } from "__ui";
-
 export default function Page() {
   return (
-    <>
-      <p>Hello docs</p>
-      {/* <Header text="Docs" />
-      <Button /> */}
-    </>
+    <div
+      style={{
+        height: "100%",
+        fontFamily: "Arial",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div style={{ textAlign: "center" }}>
+        <h1>Hello docs</h1>
+        <p>This is a paragraph</p>
+      </div>
+    </div>
   );
 }

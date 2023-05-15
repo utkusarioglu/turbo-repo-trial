@@ -6,7 +6,7 @@ import { Spacer, YStack, XStack } from "ui";
 const CustomComponent = () => {
   return (
     <YStack>
-      <CustomHeader text="Web" />
+      <CustomHeader>Hi</CustomHeader>
       <CustomInput />
       <Spacer />
       <XStack>
