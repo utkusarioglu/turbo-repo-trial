@@ -1,5 +1,4 @@
 const path = require("path");
-const babylon = require("@babel/parser");
 
 const appRoot = __dirname;
 const workspaceRoot = path.resolve(__dirname, "../..");
@@ -20,17 +19,5 @@ module.exports = {
         inlineRequires: true,
       },
     }),
-  },
-  // transformer: {},
-  // transform: file => {
-  //   console.log(file);
-  //   const ast = babylon.parse(file.src, { sourceType: "module" });
-  //   return { ast };
-  // },
-  resolver: {
-    // extraNodeModules: [
-    //   path.resolve(appRoot, "node_modules"),
-    //   path.resolve(workspaceRoot, "node_modules"),
-    // ],
   },
 };
