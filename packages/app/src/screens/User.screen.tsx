@@ -1,21 +1,18 @@
-import CustomButton from "ui/src/CustomButton";
 import CustomHeader from "ui/src/CustomHeader";
-import CustomInput from "ui/src/CustomInput";
-import { Spacer, YStack, XStack } from "ui";
+import { YStack, Text, Button } from "ui";
+import { createParam } from "solito";
+import { useLink } from "solito/link";
+
+const { useParam } = createParam();
 
 const CustomComponent = () => {
+  const homeLink = useLink({ href: "/home" });
+  const userId = useParam("userId");
   return (
     <YStack>
-      <CustomHeader>Hi</CustomHeader>
-      <CustomInput />
-      <Spacer />
-      <XStack>
-        <CustomButton />
-        <Spacer />
-        <CustomButton />
-        <Spacer />
-        <CustomButton />
-      </XStack>
+      <CustomHeader>Users</CustomHeader>
+      <Text>User id is: {userId}</Text>
+      <Button onPress={() => homeLink.onPress()}>Home</Button>
     </YStack>
   );
 };

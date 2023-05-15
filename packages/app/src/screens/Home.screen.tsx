@@ -10,11 +10,11 @@ const HomeScreen = () => {
       <CustomInput />
       <Spacer />
       <XStack>
-        <CustomButton />
+        <CustomButton userId={1}>One</CustomButton>
         <Spacer />
-        <CustomButton />
+        <CustomButton userId={2}>Two</CustomButton>
         <Spacer />
-        <CustomButton />
+        <CustomButton userId={3}>Three</CustomButton>
       </XStack>
     </YStack>
   );
