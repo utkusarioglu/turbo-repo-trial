@@ -1,35 +1,51 @@
-// module.exports = {
-//   presets: ['module:metro-react-native-babel-preset'],
-// };
-
 const path = require("path");
 
 process.env.TAMAGUI_TARGET = "native";
 
-const appRoot = __dirname;
-
 const alias = {
-  "^react$": require.resolve("react", {
-    paths: [path.join(appRoot, "./")],
+  react: require.resolve("react", {
+    paths: [path.join(__dirname, "./")],
   }),
-  "^react-native$": require.resolve(`react-native`, {
+  "^react/(.+)": ([, name]) =>
+    require.resolve(`react/${name}`, {
+      paths: [path.join(__dirname, "./")],
+    }),
+  "^react-native$": require.resolve("react-native", {
     paths: [path.join(__dirname, "./")],
   }),
   "^react-native/(.+)": ([, name]) =>
     require.resolve(`react-native/${name}`, {
       paths: [path.join(__dirname, "./")],
     }),
-  // "react-native-svg": require.resolve("react-native-svg", {
-  //   paths: [path.join(__dirname, "./")],
-  // }),
 };
 
-console.log("babel!!!------------------------!", { appRoot, alias });
+console.log("Cleaned up 2", { alias });
 
 module.exports = {
   presets: ["module:metro-react-native-babel-preset"],
   plugins: [
     // "tsconfig-paths-module-resolver",
+    // [
+    //   "module-resolver",
+    //   {
+    //     root: ["."],
+    //     alias,
+    //     extensions: [
+    //       ".ios.js",
+    //       ".ios.ts",
+    //       ".ios.tsx",
+    //       ".android.js",
+    //       ".android.ts",
+    //       ".android.tsx",
+    //       ".native.js",
+    //       ".native.ts",
+    //       ".native.tsx",
+    //       ".js",
+    //       ".ts",
+    //       ".tsx",
+    //     ],
+    //   },
+    // ],
     [
       "@tamagui/babel-plugin",
       {

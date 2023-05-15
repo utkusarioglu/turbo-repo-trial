@@ -5,7 +5,7 @@
   "scripts": {
     "adb-connect": "adb connect $ANDROID_TARGET_DEVICE",
     "rn-start": "TAMAGUI_TARGET=native react-native start --reset-cache",
-    "rn-android": "TAMAGUI_TARGET=native react-native run-android",
+    "rn-android": "TAMAGUI_TARGET=native react-native run-android --no-packager",
     "dev": "yarn adb-connect && yarn rn-start & yarn rn-android",
     "lint": "eslint .",
     "test": "jest"
@@ -40,8 +40,5 @@
   },
   "jest": {
     "preset": "react-native"
-  },
-  "installConfig": {
-    "hoistingLimits": "workspaces"
   }
 }
