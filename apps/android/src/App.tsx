@@ -10,6 +10,21 @@ import {
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { RootNavigation } from "./RootNavigation";
 
+const linking = {
+  prefixes: [
+    "http://localhost:3000",
+    //   // ...add your URLs here
+    //   Linking.createURL('/'),
+  ],
+  config: {
+    initialRouteName: "home" as "home",
+    screens: {
+      home: "",
+      user: "user/:userId",
+    },
+  },
+};
+
 const App = () => {
   const colorScheme = useColorScheme();
 
@@ -23,6 +38,7 @@ const App = () => {
           defaultTheme={colorScheme}
           disableRootThemeClass>
           <NavigationContainer
+            linking={linking}
             theme={
               colorScheme === "dark"
                 ? ReactNavigationDarkTheme
