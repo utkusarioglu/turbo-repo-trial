@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "build-release": "cd android && ./gradlew assembleRelease",
     "adb-connect": "adb connect $ANDROID_TARGET_DEVICE",
     "rn-start": "TAMAGUI_TARGET=native react-native start --reset-cache",
     "rn-android": "TAMAGUI_TARGET=native react-native run-android --no-packager",
