@@ -140,7 +140,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: ${{ steps.variables.outputs.image_name }}
           short-description: Api microservice containers for NextJS-Grpc
-          readme-filepath: ${{ matrix.images.repoRelPath }}/${{ matrix.images.readmeFile }}
+          readme-filepath: ${{ matrix.images.repoRelPath }}/${{ matrix.images.appRelPath }}/${{ matrix.images.readmeFile }}
 
       - name: Move cache
         run: |
