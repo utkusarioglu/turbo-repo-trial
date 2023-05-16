@@ -1,0 +1,43 @@
+name: "Build Android"
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: production
+    container:
+      image: utkusarioglu/react-native-android-devcontainer:tag-unavailable
+      # image: utkusarioglu/react-native-android-devcontainer:1.0.17
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          repository: utkusarioglu/android
+          path: frontend-clients
+
+      - name: Install monorepo dependencies
+        working-directory: frontend-clients
+        run: |
+          yarn install --frozen-lockfile --production false
+
+      - name: Build android
+        working-directory: frontend-clients/apps/android
+        run: |
+          yarn build-release
+
+      # - name: Upload to Google Drive
+      #   uses: adityak74/google-drive-upload-git-action@main
+      #   with:
+      #     credentials: ${{ secrets.GOOGLE_DRIVE_TOKEN }}
+      #     filename: android/android/app/build/outputs/apk/release/app-release.apk
+      #     folderId: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
+      #     overwrite: "true"
+
+      - name: Builds as artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: utkusarioglu-android-build
+          path: frontend-clients/apps/android/android/app/build/outputs/apk/release

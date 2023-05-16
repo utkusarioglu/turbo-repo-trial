@@ -6,7 +6,7 @@
     "build-release": "cd android && ./gradlew assembleRelease",
     "adb-connect": "adb connect $ANDROID_TARGET_DEVICE",
     "rn-start": "TAMAGUI_TARGET=native react-native start --reset-cache",
-    "rn-android": "TAMAGUI_TARGET=native react-native run-android --no-packager",
+    "rn-android": "TAMAGUI_TARGET=native react-native run-android --no-packager --active-arch-only",
     "dev": "yarn adb-connect && yarn rn-start & yarn rn-android",
     "lint": "eslint .",
     "test": "jest"
