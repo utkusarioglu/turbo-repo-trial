@@ -39,6 +39,7 @@ RUN chown -R $CONTAINER_USERNAME:$CONTAINER_GROUP $PROJECT_ROOT_ABSPATH
 
 WORKDIR $REPO_ABSPATH
 RUN yarn --immutable
+RUN yarn plugin import workspace-tools
 RUN yarn build --filter=web
 # RUN rm dist/.tsbuildinfo
 
@@ -64,15 +65,14 @@ COPY --from=builder "$APP_ABSPATH/dist" dist
 COPY --from=builder "$APP_ABSPATH/scripts" scripts
 COPY --from=builder "$APP_ABSPATH/package.json" package.json
 COPY --from=builder "$APP_ABSPATH/next.config.js" next.config.js
-COPY --from=builder "$REPO_ABSPATH/yarn.lock" yarn.lock
 
 # WORKDIR  $PROJECT_ROOT/proto
 # COPY --from=builder $PROJECT_ROOT/proto/src src
 # RUN rm -rf src/defunct
 
-
 WORKDIR $REPO_ABSPATH
-RUN yarn plugin import workspace-tools
+COPY --from=builder "$REPO_ABSPATH/yarn.lock" yarn.lock
+COPY --from=builder "$REPO_ABSPATH/.yarn" yarn.lock
 
 WORKDIR $APP_ABSPATH
 RUN yarn workspaces focus --production
