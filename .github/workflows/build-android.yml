@@ -8,9 +8,6 @@ on:
       - src/**
       - .github/workflows/build-and-push.yml
   workflow_dispatch:
-    
-env:
-  WORKING_DIR: /utkusarioglu/trials/turbo
 
 jobs:
   build-android:
@@ -19,6 +16,7 @@ jobs:
       NODE_ENV: production
     container:
       image: utkusarioglu/react-native-android-devcontainer:tag-unavailable
+      options: --user=0:0
       # image: utkusarioglu/react-native-android-devcontainer:1.0.17
     steps:
       - name: Checkout repo
@@ -26,15 +24,15 @@ jobs:
         with:
           fetch-depth: 0
           # repository: utkusarioglu/android
-          path: ${{ env.WORKING_DIR }}
+          path: frontend-clients
 
       - name: Install monorepo dependencies
-        working-directory: ${{ env.WORKING_DIR }}
+        working-directory: frontend-clients
         run: |
           yarn install --frozen-lockfile --production false
 
       - name: Build android
-        working-directory: ${{ env.WORKING_DIR }}/apps/android
+        working-directory: frontend-clients/apps/android
         run: |
           yarn build-release
 
@@ -49,5 +47,5 @@ jobs:
       - name: Builds as artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: utkusarioglu-turbo-repo-android-release-build
-          path: ${{ env.WORKING_DIR }}/apps/android/android/app/build/outputs/apk/release
+          name: utkusarioglu-android-build
+          path: frontend-clients/apps/android/android/app/build/outputs/apk/release
