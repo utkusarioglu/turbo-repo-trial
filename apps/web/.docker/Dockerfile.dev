@@ -73,7 +73,8 @@ COPY --from=builder "$APP_ABSPATH/next.config.js" next.config.js
 WORKDIR $REPO_ABSPATH
 COPY --from=builder "$REPO_ABSPATH/yarn.lock" yarn.lock
 COPY --from=builder "$REPO_ABSPATH/.yarn" .
-RUN ls -al $REPO_ABSPATH/.yarn
+RUN ls -al $REPO_ABSPATH
+RUN ls -al $APP_ABSPATH
 
 WORKDIR $APP_ABSPATH
 RUN yarn workspaces focus --production
