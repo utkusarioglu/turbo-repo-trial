@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "TAMAGUI_TARGET=web next dev",
     "build": "TAMAGUI_TARGET=web next build",
-    "start": "TAMAGUI_TARGET=web next start"
+    "start": "scripts/start.sh"
   },
   "dependencies": {
     "@tamagui/next-theme": "^1.27.3",
@@ -14,10 +14,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native": "0.71.8",
+    "@tamagui/next-plugin": "^1.27.3",
     "ui": "*"
   },
   "devDependencies": {
-    "@tamagui/next-plugin": "^1.27.3",
     "@types/node": "^17.0.12",
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",

@@ -1,9 +1,10 @@
 // import { withTamagui } from "@tamagui/next-plugin";
 const { withTamagui } = require("@tamagui/next-plugin");
 
-module.exports = function (name, { defaultConfig }) {
+module.exports = function (_name, { defaultConfig }) {
   const nextConfig = {
     ...defaultConfig,
+    distDir: "dist",
     reactStrictMode: true,
     transpilePackages: ["ui", "app", "solito"],
   };
