@@ -29,7 +29,7 @@ jobs:
       - name: Install monorepo dependencies
         working-directory: frontend-clients
         run: |
-          yarn install --immutable
+          yarn
 
       - name: Build android
         working-directory: frontend-clients/apps/android
