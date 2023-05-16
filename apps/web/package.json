@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "TAMAGUI_TARGET=web next dev",
     "build": "TAMAGUI_TARGET=web next build",
-    "start": "scripts/start.sh"
+    "start": "scripts/start.sh",
+    "entrypoint": "scripts/entrypoint.sh"
   },
   "dependencies": {
     "@tamagui/next-theme": "^1.27.3",
