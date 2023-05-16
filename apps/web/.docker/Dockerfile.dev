@@ -70,6 +70,7 @@ COPY --from=builder "$REPO_ABSPATH/yarn.lock" yarn.lock
 # COPY --from=builder $PROJECT_ROOT/proto/src src
 # RUN rm -rf src/defunct
 
+
 WORKDIR $APP_ABSPATH
 RUN yarn workspaces focus --production
 
