@@ -1,7 +1,13 @@
 name: "Build Android"
 on:
+  push:
+    tags:
+      - "**.**"
+      - "experiment/**/**/**"
+    paths:
+      - src/**
+      - .github/workflows/build-and-push.yml
   workflow_dispatch:
-  workflow_call:
 
 jobs:
   build-android:
@@ -10,18 +16,22 @@ jobs:
       NODE_ENV: production
     container:
       image: utkusarioglu/react-native-android-devcontainer:tag-unavailable
+      options: --user=0:0
       # image: utkusarioglu/react-native-android-devcontainer:1.0.17
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
-          repository: utkusarioglu/android
+          fetch-depth: 0
+          # repository: utkusarioglu/android
           path: frontend-clients
 
       - name: Install monorepo dependencies
         working-directory: frontend-clients
         run: |
-          yarn install --frozen-lockfile --production false
+          ls -al
+          cat package.json
+          yarn
 
       - name: Build android
         working-directory: frontend-clients/apps/android
