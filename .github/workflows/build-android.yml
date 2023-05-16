@@ -29,6 +29,8 @@ jobs:
       - name: Install monorepo dependencies
         working-directory: frontend-clients
         run: |
+          ls -al
+          cat package.json
           yarn
 
       - name: Build android
