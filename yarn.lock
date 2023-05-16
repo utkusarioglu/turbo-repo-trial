@@ -6211,22 +6211,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docs@workspace:apps/docs":
-  version: 0.0.0-use.local
-  resolution: "docs@workspace:apps/docs"
-  dependencies:
-    "@types/node": ^17.0.12
-    "@types/react": ^18.0.22
-    "@types/react-dom": ^18.0.7
-    eslint-config-custom: "*"
-    next: ^13.4.1
-    react: ^18.2.0
-    react-dom: ^18.2.0
-    tsconfig: "*"
-    typescript: ^4.5.3
-  languageName: unknown
-  linkType: soft
-
 "doctrine@npm:^2.1.0":
   version: 2.1.0
   resolution: "doctrine@npm:2.1.0"
@@ -14025,6 +14009,7 @@ __metadata:
     next: ^13.4.1
     react: ^18.2.0
     react-dom: ^18.2.0
+    react-native: 0.71.8
     tsconfig: "*"
     typescript: ^4.5.3
     ui: "*"
