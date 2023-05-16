@@ -1,3 +1,4 @@
 #!/bin/bash
 
-TAMAGUI_TARGET=web next start
+echo "Web client start…"
+TAMAGUI_TARGET=web yarn next start

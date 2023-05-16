@@ -3,7 +3,7 @@ name: build-web
 on:
   push:
     tags:
-      - "**.**"
+      - "**.**.**"
       - "experiment/**/**/**"
     paths:
       - apps/**
