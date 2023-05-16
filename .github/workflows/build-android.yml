@@ -8,6 +8,9 @@ on:
       - src/**
       - .github/workflows/build-and-push.yml
   workflow_dispatch:
+    
+env:
+  WORKING_DIR: /utkusarioglu/trials/turbo
 
 jobs:
   build-android:
@@ -21,16 +24,17 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
+          fetch-depth: 0
           # repository: utkusarioglu/android
-          path: frontend-clients
+          path: ${{ env.WORKING_DIR }}
 
       - name: Install monorepo dependencies
-        working-directory: frontend-clients
+        working-directory: ${{ env.WORKING_DIR }}
         run: |
           yarn install --frozen-lockfile --production false
 
       - name: Build android
-        working-directory: frontend-clients/apps/android
+        working-directory: ${{ env.WORKING_DIR }}/apps/android
         run: |
           yarn build-release
 
@@ -45,5 +49,5 @@ jobs:
       - name: Builds as artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: utkusarioglu-android-build
-          path: frontend-clients/apps/android/android/app/build/outputs/apk/release
+          name: utkusarioglu-turbo-repo-android-release-build
+          path: ${{ env.WORKING_DIR }}/apps/android/android/app/build/outputs/apk/release
