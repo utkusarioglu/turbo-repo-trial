@@ -13,9 +13,9 @@ jobs:
       # image: utkusarioglu/react-native-android-devcontainer:1.0.17
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
-          repository: utkusarioglu/android
+          # repository: utkusarioglu/android
           path: frontend-clients
 
       - name: Install monorepo dependencies
