@@ -84,7 +84,7 @@ WORKDIR $APP_ABSPATH
 RUN yarn workspaces focus --production
 
 WORKDIR $REPO_ABSPATH
-RUN rm .yarn
+RUN rm -rf .yarn
 
 WORKDIR $APP_ABSPATH
 USER $USERNAME
