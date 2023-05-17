@@ -1,4 +1,4 @@
-name: build-web
+name: Build Web Server
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
       matrix:
         images:
           - imageTagPrefix: ""
-            repoRelPath: frontend-clients
+            repoRelPath: frontend
             appRelPath: apps/web
             dockerfile: .docker/Dockerfile.dev
             additionalFilesToWatch: ""
@@ -78,7 +78,6 @@ jobs:
       - name: Create variables
         id: variables
         run: |
-          # TODO create these
           image_name=${{ secrets.DOCKERHUB_USERNAME }}/${{ env.CONTAINER_NAME }}
           repo_tag=${{ github.ref_name }}
           if [ ! -z "${{ matrix.images.imageTagPrefix }}" ]; then

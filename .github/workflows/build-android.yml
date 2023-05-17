@@ -1,13 +1,19 @@
-name: "Build Android"
+name: Build Android App
 on:
   push:
     tags:
-      - "**.**"
+      - "**.**.**"
       - "experiment/**/**/**"
     paths:
-      - src/**
-      - .github/workflows/build-and-push.yml
+      - apps/**
+      - packages/**
+      - .github/workflows/build-web.yml
   workflow_dispatch:
+    
+env:
+  REPO_RELPATH: frontend
+  APP_RELPATH: apps/android
+  APK_RELEASE_DIR_RELPATH: android/app/build/outputs/apk/release
 
 jobs:
   build-android:
@@ -22,19 +28,19 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 2
           # repository: utkusarioglu/android
-          path: frontend-clients
+          path: ${{ env.REPO_RELPATH }}
 
       - name: Install monorepo dependencies
-        working-directory: frontend-clients
+        working-directory: ${{ env.REPO_RELPATH }}
         run: |
           ls -al
           cat package.json
           yarn
 
       - name: Build android
-        working-directory: frontend-clients/apps/android
+        working-directory: ${{ env.REPO_RELPATH }}/${{ env.APP_RELPATH }}
         run: |
           yarn build-release
 
@@ -50,4 +56,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: utkusarioglu-android-build
-          path: frontend-clients/apps/android/android/app/build/outputs/apk/release
+          path: ${{ env.REPO_RELPATH }}/${{ env.APP_RELPATH }}/${{ env.APK_RELEASE_DIR_RELPATH }}
