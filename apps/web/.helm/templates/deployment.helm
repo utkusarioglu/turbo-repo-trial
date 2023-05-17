@@ -97,7 +97,7 @@ spec:
         {{- if eq .Values.env.RUN_MODE "development" -}}
         - name: source-code
           persistentVolumeClaim:
-            claimName: source-code-web-client-pvc
+            claimName: source-code-web-server-pvc
         {{- end }}
         - name: {{ .Values.certSecretNames.msGrpcClient | quote }}
           secret:

@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: source-code-web-client-pvc
+  name: source-code-web-server-pvc
 spec:
   accessModes:
     - ReadWriteMany
