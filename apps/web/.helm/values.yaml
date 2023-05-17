@@ -1,11 +1,11 @@
-# Default values for webClient.
+# Default values for webServer.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: utkusarioglu/web-client-nextjsgprc-projects-utkusarioglu-com
+  repository: utkusarioglu/web-server-nextjsgprc-projects-utkusarioglu-com
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -76,7 +76,7 @@ env:
   RUN_MODE: production
 
   PROJECT_ROOT_ABSPATH: /utkusarioglu-com/projects/nextjs-grpc
-  REPO_RELPATH: frontend-clients
+  REPO_RELPATH: frontend
   APP_RELPATH: apps/web
   # REPO_PROTOS_RELPATH: proto/src
 
@@ -94,8 +94,8 @@ env:
   CERTIFICATES_ABSPATH: /.certificates
   # CREDENTIALS_ABSPATH: /.certs # This isn't used 
 
-  MS_GRPC_CLIENT_CERT_FOR_WEB_CLIENT_RELPATH: ms-grpc-client-cert-for-web-client
-  WEB_CLIENT_SERVER_CERT_RELPATH: web-client-server-cert
+  MS_GRPC_CLIENT_CERT_FOR_WEB_SERVER_RELPATH: ms-grpc-client-cert-for-web-server
+  WEB_SERVER_SERVER_CERT_RELPATH: web-server-server-cert
 
   NEXT_PUBLIC_DOMAIN_NAME: <TF_POPULATED>
   SCHEME: <TF_POPULATED>
@@ -105,8 +105,8 @@ cloudProvider:
   isAws: false
 
 certSecretNames:
-  msGrpcClient: ms-grpc-client-cert-for-web-client
-  webClientServerCert: web-client-server-cert
+  msGrpcClient: ms-grpc-client-cert-for-web-server
+  webServerServerCert: web-server-server-cert
 
 ingress:
   enabled: true

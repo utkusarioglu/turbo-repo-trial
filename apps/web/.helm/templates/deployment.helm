@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "webClient.fullname" . }}
+  name: {{ include "webServer.fullname" . }}
   labels:
-    {{- include "webClient.labels" . | nindent 4 }}
+    {{- include "webServer.labels" . | nindent 4 }}
   # {{- if .Values.cloudProvider.isLocal }}
   # annotations:
   # {{- end }}
@@ -13,7 +13,7 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "webClient.selectorLabels" . | nindent 6 }}
+      {{- include "webServer.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -21,13 +21,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "webClient.selectorLabels" . | nindent 8 }}
+        {{- include "webServer.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "webClient.serviceAccountName" . }}
+      serviceAccountName: {{ include "webServer.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -63,16 +63,16 @@ spec:
             {{- end }}
             - name: {{ $.Values.certSecretNames.msGrpcClient }}
               mountPath: {{ 
-                include "webClient.singleCertPath" (
+                include "webServer.singleCertPath" (
                   dict 
                     "global" $ 
                     "relpath" .MS_GRPC_CLIENT_CERT_FOR_WEB_CLIENT_RELPATH
                 ) | quote 
               }}
               readOnly: true
-            - name: {{ $.Values.certSecretNames.webClientServerCert }}
+            - name: {{ $.Values.certSecretNames.webServerServerCert }}
               mountPath: {{ 
-                include "webClient.singleCertPath" (
+                include "webServer.singleCertPath" (
                   dict 
                     "global" $ 
                     "relpath" .WEB_CLIENT_SERVER_CERT_RELPATH
@@ -102,8 +102,8 @@ spec:
         - name: {{ .Values.certSecretNames.msGrpcClient | quote }}
           secret:
             secretName: {{ .Values.certSecretNames.msGrpcClient | quote }}
-        - name: {{ .Values.certSecretNames.webClientServerCert | quote }}
+        - name: {{ .Values.certSecretNames.webServerServerCert | quote }}
           secret:
-            secretName: {{ .Values.certSecretNames.webClientServerCert | quote }}
+            secretName: {{ .Values.certSecretNames.webServerServerCert | quote }}
 
           

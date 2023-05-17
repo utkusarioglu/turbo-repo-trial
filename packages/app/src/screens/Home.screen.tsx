@@ -6,7 +6,7 @@ import { Spacer, YStack, XStack } from "ui";
 const HomeScreen = () => {
   return (
     <YStack>
-      <CustomHeader>Hi</CustomHeader>
+      <CustomHeader>Hi Hello Howdy</CustomHeader>
       <CustomInput />
       <Spacer />
       <XStack>

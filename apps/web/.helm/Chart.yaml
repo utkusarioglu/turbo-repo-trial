@@ -1,6 +1,6 @@
 apiVersion: v2
-name: web-client
-description: api container for the nextjs-grpc workshop
+name: web-server
+description: Web server container for the nextjs-grpc workshop
 type: application
 version: 0.1.104
 # appVersion: 0.0.10
